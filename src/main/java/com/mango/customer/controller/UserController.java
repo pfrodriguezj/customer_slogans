@@ -18,19 +18,14 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@PostMapping("/signIn")
+	@PostMapping("/v1/user")
 	public void addUser(@Valid @RequestBody UserDto userDto){
 		userService.saveUser(userDto);
 	}
 
-	@PutMapping("/updateUser")
+	@PutMapping("/v1/user")
 	public void updateUser(@Valid @RequestBody UserDto userDto) throws UserNotFoundException {
 		userService.updateUser(userDto);
 	}
 
-	@ExceptionHandler(UserNotFoundException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e){
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-	}
 }

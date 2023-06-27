@@ -21,7 +21,7 @@ public class SloganController {
 		this.sloganService = sloganService;
 	}
 
-	@PostMapping("/slogan")
+	@PostMapping("/v1/slogan")
 	public void addSlogan(@Valid @RequestBody SloganDto sloganDto) throws UserNotFoundException, MaxSlogansReachedException {
 		sloganService.save(sloganDto);
 	}

@@ -17,7 +17,11 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public User saveUser(UserDto userDto) {
-		User u = userBeanHelper.generateUserFromDto(userDto);
+		//User u = userBeanHelper.generateUserFromDto(userDto);
+		User u = userBeanHelper.findUserByEmail(userDto.getEmail()).map(user -> {
+			userBeanHelper.remove(user);
+			return new User(user.getId(), userDto.getName(), userDto.getLastName(), userDto.getAddress(), userDto.getCity(), user.getEmail() );
+		}).orElse(userBeanHelper.generateUserFromDto(userDto));
 		return userBeanHelper.saveUser(u);
 	}
 

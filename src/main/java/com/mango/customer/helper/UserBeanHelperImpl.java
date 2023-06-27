@@ -26,7 +26,7 @@ public class UserBeanHelperImpl implements UserBeanHelper {
 	}
 
 	@Override
-	public User saveUser(User user) {
+	public User saveUser(final User user) {
 		users.add(user);
 		return user;
 	}
@@ -34,6 +34,11 @@ public class UserBeanHelperImpl implements UserBeanHelper {
 	@Override
 	public Optional<User> findUserByEmail(String email) {
 		return users.stream().filter(user -> user.getEmail().equalsIgnoreCase(email)).findFirst();
+	}
+
+	@Override
+	public Boolean remove(User user) {
+		return users.remove(user);
 	}
 
 

@@ -10,4 +10,6 @@ public interface UserBeanHelper {
 	User saveUser(User user);
 
 	Optional<User> findUserByEmail(String email);
+
+	Boolean remove(User user);
 }
